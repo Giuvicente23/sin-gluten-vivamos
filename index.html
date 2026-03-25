@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin Gluten Vivamos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/cal-sans" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar-wrapper">
+        <header class="navbar">
+            <a href="#" class="navbar-logo">
+                <img src="images/logo.svg" alt="singluten.vivamos">
+            </a>
+            <nav class="navbar-links">
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#metodo">Método de trabajo</a>
+                <a href="#casos">Casos de éxito</a>
+            </nav>
+            <button class="btn btn-primary" onclick="openWhatsApp()">
+                Contacto
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </button>
+        </header>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <img class="section-deco" src="https://www.figma.com/api/mcp/asset/9219b1a2-959d-4d98-9396-e54b24a592bd" width="34" height="30" alt="">
+            <div class="hero-tagline">
+                <span>COMMUNITY MANAGER</span>
+                <div class="tagline-sep"></div>
+                <span>ARGENTINA</span>
+            </div>
+            <h1 class="hero-title">Sin gluten vivamos</h1>
+            <p class="hero-desc">
+                Creo contenido UGC auténtico para <strong>marcas de alimentos</strong>, <strong>restaurantes</strong> y <strong>productos sin gluten</strong>. Tu marca, en manos de alguien que realmente la consume, y de una comunidad que sabe lo que busca.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://www.tiktok.com/@singluten.vivamos" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                    Tik Tok
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9.02a8.18 8.18 0 0 0 4.78 1.52V7.1a4.84 4.84 0 0 1-1.01-.41z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/singluten.vivamos/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    Instagram
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS SECTION -->
+    <section class="clients">
+        <p class="clients-label">Colaboraciones destacadas</p>
+        <div class="clients-logos">
+            <img src="images/logo-marca-01.svg" height="30" alt="Marca 1">
+            <img src="images/logo-marca-02.svg" height="22" alt="Marca 2">
+            <img src="images/logo-marca-03.svg" height="46" alt="Marca 3">
+            <img src="images/logo-marca-04.svg" height="52" alt="Marca 4">
+            <img src="images/logo-marca-05.svg" height="52" alt="Marca 5">
+            <img src="images/logo-marca-06.svg" height="40" alt="Marca 6">
+            <img src="images/logo-marca-07.svg" height="36" alt="Marca 7">
+            <img src="images/logo-marca-08.svg" height="44" alt="Marca 8">
+            <img src="images/logo-marca-09.svg" height="26" alt="Marca 9">
+        </div>
+    </section>
+
+    <!-- SOBRE MI SECTION -->
+    <section class="about" id="sobre-mi">
+        <div class="about-photo-wrapper">
+            <img src="images/about_me.jpg" alt="Camila - Sin Gluten Vivamos" class="about-photo">
+        </div>
+        <div class="about-text">
+            <p class="label-pink">SOBRE MI</p>
+            <h2 class="about-title">¡Hola! Mi nombre es Camila</h2>
+            <p class="body-grey">
+                Soy profesora de educación física, Community manager y celíaca desde hace 5 años. Me gusta la música, el deporte, cocinar y grabar contenido. Desde mi diagnóstico, descubrí un mundo gluten free que me llevó a encontrar comidas muy ricas, marcas con productos increíbles y emprendimientos exquisitos.
+            </p>
+            <div class="about-story">
+                <h3 class="about-question">¿Por qué comencé a dedicarme a esto?</h3>
+                <p class="body-grey">
+                    Comencé en redes sociales, buscando compartir mis experiencias en lugares sin gluten, tratando también de dejar un registro de lo que consumía para que mis amigos y familiares puedan ver qué opciones teníamos para salir a comer.
+                </p>
+                <p class="body-grey">
+                    Luego comencé a compartir productos que probaba, dando mi más sincera opinión. El perfil de <strong>singluten.vivamos</strong> empezó a crecer cada vez más, y muchos emprendedores y marcas confiaban en mí para mostrar y reseñar sus productos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats">
+        <div class="stat-item">
+            <span class="stat-number">23K</span>
+            <span class="stat-label">FOLLOWERS EN INSTAGRAM</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">+700K</span>
+            <span class="stat-label">VISUALIZACIONES EN INSTAGRAM</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4K</span>
+            <span class="stat-label">FOLLOWERS EN TIK TOK</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">38K</span>
+            <span class="stat-label">LIKES EN TIKTOK</span>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="servicios">
+        <div class="services-intro">
+            <img class="section-deco" src="https://www.figma.com/api/mcp/asset/b7e178d0-1c5a-4fba-9325-6e0220085eeb" width="34" height="30" alt="">
+            <h2 class="services-title">Servicios</h2>
+            <p class="services-desc">Transformo productos en historias que la gente quiere ver, compartir y comprar.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://www.figma.com/api/mcp/asset/8bb1780c-8db9-45f0-b18e-335d5ef776e7" width="36" height="36" alt="">
+                <h3 class="service-card-title">Videos UCG para redes</h3>
+                <p class="service-card-desc">Contenido auténtico para conectar con tu audiencia en cada scroll.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://www.figma.com/api/mcp/asset/c1b290ce-3259-4fd4-a85a-a15349ae2802" width="48" height="48" alt="">
+                <h3 class="service-card-title">Paquetes de contenido</h3>
+                <p class="service-card-desc">Contenido para tus redes con foco en maximizar el alcance de tu marca.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://www.figma.com/api/mcp/asset/c7326632-7074-458f-84eb-01165934b5e9" width="48" height="48" alt="">
+                <h3 class="service-card-title">Reseñas y unboxing</h3>
+                <p class="service-card-desc">Opiniones honestas que generan confianza y acercan tu producto a la decisión de compra.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://www.figma.com/api/mcp/asset/f8bbd061-21d6-42c6-a3f0-9099293f00c4" width="48" height="48" alt="">
+                <h3 class="service-card-title">Recetas con el producto</h3>
+                <p class="service-card-desc">Inspiración creativa que muestra tu producto en acción dentro de la vida cotidiana.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP BY STEP SECTION -->
+    <section class="steps" id="metodo">
+        <div class="steps-intro">
+            <p class="label-pink-light">TRABAJANDO JUNTOS</p>
+            <h2 class="steps-heading">Conocé el paso a paso</h2>
+            <p class="steps-body">
+                Cuando trabajamos juntos, tenés visibilidad total del proceso: cada paso está pensado para potenciar la exposición de tu marca de forma simple y efectiva.
+            </p>
+        </div>
+        <div class="steps-list">
+            <div class="step">
+                <p class="step-number">01.</p>
+                <h3 class="step-title">Primer contacto</h3>
+                <p class="step-desc">Te cuento cómo trabajo, qué tipo de contenido produzco y qué incluye cada pack de colaboración para que puedas elegir la opción que mejor se adapta a tu marca.</p>
+            </div>
+            <div class="step">
+                <p class="step-number">02.</p>
+                <h3 class="step-title">Alinear acción en conjunto</h3>
+                <p class="step-desc">Definimos juntos el formato de contenido más estratégico para tus objetivos: reel con reseña, unboxing, receta, sorteo, o una combinación de varios.</p>
+            </div>
+            <div class="step">
+                <p class="step-number">03.</p>
+                <h3 class="step-title">Chequeo de material producido y planificación de salida</h3>
+                <p class="step-desc">Revisás el contenido antes de que salga al mundo. Una vez aprobado, coordinamos el día y horario de publicación para maximizar el alcance.</p>
+            </div>
+            <div class="step">
+                <p class="step-number">04.</p>
+                <h3 class="step-title">Informe de resultados</h3>
+                <p class="step-desc">Al finalizar la colaboración, te comparto las métricas clave del contenido publicado para que puedas medir el impacto real en tu marca.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASOS DE ÉXITO SECTION -->
+    <section class="cases" id="casos">
+        <div class="cases-shape" aria-hidden="true">
+            <img src="https://www.figma.com/api/mcp/asset/44b7e6dc-07a2-4d87-8d2f-4b35ec020938" alt="">
+        </div>
+        <div class="cases-header">
+            <h2 class="cases-title">Casos de éxito</h2>
+        </div>
+        <div class="cases-grid">
+            <!-- Megasaludable -->
+            <div class="case-card">
+                <h3 class="case-brand">Megasaludable</h3>
+                <hr class="case-divider">
+                <p class="case-type">REEL DE INSTAGRAM</p>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/54c4b1c5-0951-4069-a79a-44fdaf84cfae" width="24" height="24" alt="">
+                    <span class="metric-number">183.5K</span>
+                    <span class="metric-label">Visualizaciones</span>
+                </div>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/608dbc56-24f4-4d1d-9c1c-8fb06160edba" width="24" height="24" alt="">
+                    <span class="metric-number">11.3K</span>
+                    <span class="metric-label">Interacciones</span>
+                </div>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/9deaad7e-25e4-4475-b683-36d4d309fdb8" width="24" height="24" alt="">
+                    <span class="metric-number">139.6K</span>
+                    <span class="metric-label">Cuentas alcanzadas</span>
+                </div>
+            </div>
+            <!-- Starbucks -->
+            <div class="case-card">
+                <h3 class="case-brand">Starbucks</h3>
+                <hr class="case-divider">
+                <p class="case-type">REEL DE INSTAGRAM</p>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/54c4b1c5-0951-4069-a79a-44fdaf84cfae" width="24" height="24" alt="">
+                    <span class="metric-number">169.3K</span>
+                    <span class="metric-label">Visualizaciones</span>
+                </div>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/608dbc56-24f4-4d1d-9c1c-8fb06160edba" width="24" height="24" alt="">
+                    <span class="metric-number">8.9K</span>
+                    <span class="metric-label">Interacciones</span>
+                </div>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/9deaad7e-25e4-4475-b683-36d4d309fdb8" width="24" height="24" alt="">
+                    <span class="metric-number">132.2K</span>
+                    <span class="metric-label">Cuentas alcanzadas</span>
+                </div>
+            </div>
+            <!-- IKRAM Food -->
+            <div class="case-card">
+                <h3 class="case-brand">IKRAM Food</h3>
+                <hr class="case-divider">
+                <p class="case-type">REEL DE INSTAGRAM</p>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/54c4b1c5-0951-4069-a79a-44fdaf84cfae" width="24" height="24" alt="">
+                    <span class="metric-number">55.6K</span>
+                    <span class="metric-label">Visualizaciones</span>
+                </div>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/608dbc56-24f4-4d1d-9c1c-8fb06160edba" width="24" height="24" alt="">
+                    <span class="metric-number">3.6K</span>
+                    <span class="metric-label">Interacciones</span>
+                </div>
+                <div class="case-metric">
+                    <img src="https://www.figma.com/api/mcp/asset/9deaad7e-25e4-4475-b683-36d4d309fdb8" width="24" height="24" alt="">
+                    <span class="metric-number">40K</span>
+                    <span class="metric-label">Cuentas alcanzadas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOSE / CTA SECTION -->
+    <section class="cta">
+        <div class="cta-inner">
+            <div class="ugc-badge">
+                <img src="images/close-section.png" alt="Sin Gluten Vivamos">
+            </div>
+            <h2 class="cta-title">¿Querés trabajar juntos?</h2>
+            <p class="cta-desc">Contactame para que podamos comenzar a colaborar.</p>
+            <button class="btn btn-primary" onclick="openWhatsApp()">
+                Contactarme
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="#" class="footer-logo">
+            <img src="images/logo.svg" alt="singluten.vivamos" class="footer-logo-img">
+        </a>
+        <div class="footer-social">
+            <a href="https://www.tiktok.com/@singluten.vivamos" target="_blank" rel="noopener noreferrer">Tiktok</a>
+            <a href="https://www.instagram.com/singluten.vivamos/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+        <span class="footer-year">2026</span>
+    </footer>
+
+    <script>
+        function openWhatsApp() {
+            var phone = '5491130507198';
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            var url = isMobile
+                ? 'https://api.whatsapp.com/send?phone=' + phone
+                : 'https://web.whatsapp.com/send?phone=' + phone;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

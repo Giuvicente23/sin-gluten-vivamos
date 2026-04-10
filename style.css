@@ -73,7 +73,8 @@ button {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    padding: 8px 10px;
+    height: 32px;
+    padding: 0 12px;
     border-radius: 8px;
     font-family: var(--font-inter);
     font-weight: 500;
@@ -84,14 +85,21 @@ button {
     white-space: nowrap;
 }
 
-.btn:hover {
-    opacity: 0.88;
-}
-
 .btn-primary {
     background-color: var(--pink-400);
     color: var(--white);
     box-shadow: 0 4px 12px rgba(255, 27, 137, 0.06);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--pink-500);
+    box-shadow: 0 8px 24px rgba(255, 27, 137, 0.22);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
 }
 
 .btn-secondary {
@@ -99,34 +107,36 @@ button {
     color: var(--pink-300);
     border: 1px solid var(--pink-400);
     box-shadow: 0 4px 12px rgba(255, 27, 137, 0.06);
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--pink-100);
+    color: var(--pink-500);
+    box-shadow: 0 6px 18px rgba(255, 27, 137, 0.14);
+    transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
 }
 
 /* =============================================
    NAVBAR
    ============================================= */
-.navbar-wrapper {
+.navbar {
     position: fixed;
-    top: 16px;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    display: flex;
-    justify-content: center;
-    padding: 0 16px;
-    pointer-events: none;
-}
-
-.navbar {
-    pointer-events: all;
     background-color: var(--white);
-    border-radius: 16px;
-    box-shadow: 0 4px 60px rgba(37, 37, 37, 0.06);
-    padding: 12px 16px;
+    box-shadow: 0 1px 16px rgba(37, 37, 37, 0.08);
+    padding: 12px 48px;
     display: flex;
     align-items: center;
     gap: 64px;
     width: 100%;
-    max-width: 1100px;
 }
 
 .navbar-logo {
@@ -136,7 +146,7 @@ button {
 }
 
 .navbar-logo img {
-    height: 24px;
+    height: 32px;
     width: auto;
     display: block;
 }
@@ -156,18 +166,60 @@ button {
     line-height: 16px;
     white-space: nowrap;
     transition: color 0.2s ease;
+    position: relative;
+}
+
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 1.5px;
+    background-color: var(--pink-400);
+    transition: width 0.25s ease;
 }
 
 .navbar-links a:hover {
     color: var(--pink-400);
 }
 
+.navbar-links a:hover::after {
+    width: 100%;
+}
+
+.navbar-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.navbar-buttons .btn-secondary {
+    height: 32px;
+}
+
+.navbar-buttons .btn-secondary svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
 /* =============================================
    HERO SECTION
    ============================================= */
+@keyframes float-a {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-16px); }
+}
+@keyframes float-b {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+}
+
 .hero {
     min-height: 633px;
-    background-image: url('images/hero-section-desktop.png');
+    background-image: url('images/hero_background_color.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -175,6 +227,59 @@ button {
     justify-content: center;
     padding: 120px 40px 80px;
     position: relative;
+    overflow: hidden;
+}
+
+.hero-card {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* hero_01 = TikTok (334×376), hero_02 = UGC (329×329), hero_03 = Instagram (327×370), hero_04 = strip (335×526) */
+.hero-card-01 {
+    width: 310px;   /* TikTok */
+    left: -30px;
+    top: 75px;
+}
+.hero-card-02 {
+    width: 310px;   /* UGC — mismo ancho que TikTok */
+    left: 50px;
+    top: 255px;
+}
+.hero-card-03 {
+    width: 295px;
+    right: 30px;
+    top: 240px;
+    z-index: 1;
+}
+.hero-card-04 {
+    width: 310px;
+    right: -15px;
+    top: 20px;
+    z-index: 0;
+}
+
+.hero:hover .hero-card-01 {
+    animation: float-a 3.2s ease-in-out infinite;
+}
+.hero:hover .hero-card-02 {
+    animation: float-b 3.6s ease-in-out infinite;
+    animation-delay: 0.4s;
+}
+.hero:hover .hero-card-03 {
+    animation: float-a 3s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+.hero:hover .hero-card-04 {
+    animation: float-b 3.4s ease-in-out infinite;
+    animation-delay: 0.6s;
 }
 
 .hero-content {
@@ -273,6 +378,12 @@ button {
 .clients-logos img {
     object-fit: contain;
     flex-shrink: 0;
+    max-height: 32px;
+    width: auto;
+}
+
+.clients-logos img.logo-lg {
+    max-height: 56px;
 }
 
 /* =============================================
@@ -464,7 +575,7 @@ button {
     gap: 64px;
     align-items: flex-start;
     justify-content: center;
-    overflow: hidden;
+    overflow: clip; /* clip instead of hidden so position:sticky on .steps-intro still works */
 }
 
 .steps-intro {
@@ -534,7 +645,9 @@ button {
    CASES SECTION
    ============================================= */
 .cases {
-    background-color: var(--orange-025);
+    background-image: url('images/background_cases.png');
+    background-size: cover;
+    background-position: center;
     padding: 80px 36px;
     display: flex;
     flex-direction: column;
@@ -589,11 +702,17 @@ button {
     background-color: var(--white);
     flex: 1;
     border-radius: 24px;
-    padding: 20px;
-    box-shadow: 0 50px 70px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    box-shadow: 0 50px 70px rgba(0, 0, 0, 0.12);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+}
+
+.case-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .case-brand {
@@ -604,16 +723,17 @@ button {
     font-weight: 400;
 }
 
-.case-divider {
-    border: none;
-    border-top: 1px solid #eee;
+.case-reel-btn {
+    flex-shrink: 0;
 }
 
-.case-type {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
-    color: var(--pink-500);
+.case-divider {
+    display: none;
+}
+
+.case-metrics {
+    display: flex;
+    gap: 12px;
 }
 
 .case-metric {
@@ -621,8 +741,9 @@ button {
     border-radius: 12px;
     padding: 10px 12px;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
 }
 
 .case-metric img {
@@ -631,8 +752,8 @@ button {
 
 .metric-number {
     font-family: var(--font-cal);
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 24px;
+    line-height: 28px;
     color: var(--black);
     white-space: nowrap;
 }
@@ -642,7 +763,6 @@ button {
     font-weight: 400;
     line-height: 16px;
     color: var(--black);
-    white-space: nowrap;
 }
 
 /* =============================================
@@ -700,6 +820,45 @@ button {
     white-space: nowrap;
 }
 
+.cta-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* =============================================
+   SCROLL REVEAL
+   ============================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CTA staggered reveal */
+.cta-inner .reveal:nth-child(1) { transition-delay: 0s; }
+.cta-inner .reveal:nth-child(2) { transition-delay: 0.1s; }
+.cta-inner .reveal:nth-child(3) { transition-delay: 0.2s; }
+.cta-inner .reveal:nth-child(4) { transition-delay: 0.3s; }
+
 /* =============================================
    FOOTER
    ============================================= */
@@ -748,16 +907,37 @@ button {
     color: var(--grey);
 }
 
+
+/* =============================================
+   RESPONSIVE — TABLET GRANDE (1100px)
+   ============================================= */
+@media (max-width: 1100px) {
+    /* Cards positioned relative to viewport center so they never overlap the 800px content zone.
+       Right edge of left cards stays at calc(50% - 410px), left edge of right cards at calc(50% + 410px).
+       At 1100px: ~140px from edge. At 1024px: ~102px from edge. At 901px: ~40px from edge. Always safe. */
+    .hero-card-01 { width: 220px; left: calc(50% - 630px); top: 80px; }
+    .hero-card-02 { width: 220px; left: calc(50% - 630px); top: 275px; }
+    .hero-card-03 { width: 210px; right: calc(50% - 620px); top: 250px; }
+    .hero-card-04 { width: 215px; right: calc(50% - 625px); top: 30px; }
+}
+
+/* =============================================
+   RESPONSIVE — TABLET (900px)
+   ============================================= */
+@media (max-width: 900px) {
+    /* Cards barely peek in from the edges — just an aesthetic hint */
+    .hero-card-01 { width: 175px; left: calc(50% - 625px); top: 90px; }
+    .hero-card-02 { width: 175px; left: calc(50% - 625px); top: 285px; }
+    .hero-card-03 { width: 165px; right: calc(50% - 615px); top: 270px; }
+    .hero-card-04 { width: 165px; right: calc(50% - 615px); top: 40px; }
+}
+
 /* =============================================
    RESPONSIVE — MOBILE
    ============================================= */
 @media (max-width: 768px) {
 
     /* Navbar */
-    .navbar-wrapper {
-        padding: 0 16px;
-    }
-
     .navbar {
         gap: 0;
         justify-content: space-between;
@@ -768,7 +948,15 @@ button {
         display: none;
     }
 
+    .navbar-buttons .btn-secondary {
+        display: none;
+    }
+
     /* Hero */
+    .hero-card {
+        display: none;
+    }
+
     .hero {
         background-image: none;
         background-color: var(--pink-100);

@@ -13,12 +13,12 @@
    VARIABLES
    ============================================= */
 :root {
-    --pink-400: #FF1B89;
+    --pink-400: #FF48A0;
     --pink-300: #FF48A0;
     --pink-200: #FFA3CF;
     --pink-100: #FFD1E7;
     --pink-025: #FFF3F9;
-    --pink-500: #CC156D;
+    --pink-500: #D93A86;
     --orange-025: #FFF7F3;
     --black: #252525;
     --dark: #141414;
@@ -26,6 +26,7 @@
     --grey: #7C7C7C;
     --font-cal: 'Cal Sans', Georgia, serif;
     --font-inter: 'Inter', sans-serif;
+    --font-albert: 'Albert Sans', sans-serif;
 }
 
 /* =============================================
@@ -392,7 +393,7 @@ button {
 
 .hero-desc {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 20px;
     color: var(--black);
     max-width: 640px;
     text-align: center;
@@ -485,6 +486,11 @@ button {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.about-text .body-grey {
+    font-size: 14px;
+    line-height: 18px;
 }
 
 .label-pink {
@@ -637,13 +643,15 @@ button {
    STEPS SECTION
    ============================================= */
 .steps {
-    background-color: var(--white);
-    padding: 80px 36px;
+    background-color: #fff3f9;
+    padding: 60px 36px;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: clip;
     display: flex;
     gap: 64px;
     align-items: flex-start;
     justify-content: center;
-    overflow: clip; /* clip instead of hidden so position:sticky on .steps-intro still works */
 }
 
 .steps-intro {
@@ -657,18 +665,26 @@ button {
     top: 100px;
 }
 
+.steps-intro .label-pink-light {
+    font-family: var(--font-albert);
+    font-size: 12px;
+    font-weight: 600;
+    color: #00292d;
+}
+
 .steps-heading {
     font-family: var(--font-cal);
     font-size: 44px;
     line-height: 48px;
-    color: var(--pink-400);
+    color: #00292d;
     font-weight: 400;
 }
 
 .steps-body {
+    font-family: var(--font-albert);
     font-size: 16px;
     line-height: 24px;
-    color: var(--black);
+    color: #373737;
     font-weight: 400;
 }
 
@@ -676,36 +692,56 @@ button {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 64px;
+    gap: 28px;
 }
 
 .step {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+}
+
+.step-content {
+    flex: 1;
+    display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
+    min-width: 0;
+}
+
+.step-line {
+    border: none;
+    border-top: 1px solid #e8d0de;
+    margin: 0;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .step-number {
-    font-family: var(--font-cal);
-    font-size: 64px;
-    line-height: 68px;
+    font-family: var(--font-albert);
+    font-size: 56px;
+    line-height: 60px;
     letter-spacing: -1px;
-    color: var(--pink-100);
-    font-weight: 400;
+    color: #ffa3cf;
+    font-weight: 600;
+    width: 86px;
+    flex-shrink: 0;
 }
 
 .step-title {
     font-family: var(--font-cal);
-    font-size: 30px;
-    line-height: 36px;
-    color: var(--black);
+    font-size: 24px;
+    line-height: 28px;
+    color: #00292d;
     font-weight: 400;
 }
 
 .step-desc {
+    font-family: var(--font-albert);
     font-size: 16px;
     line-height: 24px;
-    color: var(--grey);
+    color: #373737;
     font-weight: 400;
 }
 
@@ -847,8 +883,8 @@ button {
    CTA / CLOSE SECTION
    ============================================= */
 .cta {
-    background-color: var(--orange-025);
-    padding: 120px 40px;
+    background-color: #00292d;
+    padding: 120px 95px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -859,43 +895,30 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
 }
 
 .ugc-badge {
-    width: 175px;
-    height: 175px;
-    background-color: var(--orange-025);
-    border-radius: 100px;
-    box-shadow: 0 50px 70px rgba(0, 0, 0, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.ugc-badge img {
-    width: 152px;
-    height: 151px;
-    object-fit: contain;
+    display: none;
 }
 
 .cta-title {
     font-family: var(--font-cal);
     font-size: 44px;
     line-height: 48px;
-    color: var(--pink-400);
+    color: #fffdf6;
     text-align: center;
     font-weight: 400;
 }
 
 .cta-desc {
+    font-family: var(--font-albert);
     font-size: 16px;
     line-height: 24px;
-    color: var(--black);
+    color: #fffdf6;
     text-align: center;
-    white-space: nowrap;
+    max-width: 600px;
+    white-space: normal;
 }
 
 .cta-buttons {
@@ -952,48 +975,84 @@ button {
    FOOTER
    ============================================= */
 .footer {
-    background-color: var(--dark);
-    height: 48px;
-    padding: 12px 36px;
+    background-color: #00654f;
+    padding: 48px 48px 24px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 120px;
+}
+
+.footer-top {
+    display: flex;
+    gap: 140px;
+    align-items: flex-start;
 }
 
 .footer-logo {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-shrink: 0;
 }
 
 .footer-logo-img {
-    height: 20px;
+    height: 24px;
     width: auto;
     display: block;
 }
 
-.footer-social {
+.footer-cols {
     display: flex;
+    gap: 56px;
+    align-items: flex-start;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
     gap: 12px;
+}
+
+.footer-col-label {
+    font-family: var(--font-albert);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.48px;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.footer-col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer-col-links a {
+    font-family: var(--font-albert);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--white);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer-col-links a:hover {
+    opacity: 0.7;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-}
-
-.footer-social a {
+    font-family: var(--font-albert);
     font-size: 12px;
     font-weight: 400;
-    line-height: 24px;
-    color: #FFF3F9;
-    transition: color 0.2s ease;
-}
-
-.footer-social a:hover {
-    color: var(--pink-300);
-}
-
-.footer-year {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 24px;
-    color: var(--grey);
+    line-height: 1.4;
+    color: var(--white);
+    opacity: 0.5;
+    width: 100%;
 }
 
 
@@ -1163,7 +1222,17 @@ button {
     }
 
     .steps-list {
-        gap: 16px;
+        gap: 32px;
+    }
+
+    .step {
+        align-items: flex-start;
+    }
+
+    .step-number {
+        font-size: 40px;
+        line-height: 44px;
+        width: 60px;
     }
 
     /* Cases */
@@ -1212,6 +1281,23 @@ button {
 
     /* Footer */
     .footer {
-        padding: 12px 16px;
+        padding: 40px 20px 24px;
+        gap: 48px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .footer-cols {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
     }
 }

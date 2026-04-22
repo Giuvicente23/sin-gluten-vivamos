@@ -96,40 +96,53 @@
             <img src="images/about_me.jpg" alt="Camila - Sin Gluten Vivamos" class="about-photo">
         </div>
         <div class="about-text reveal">
-            <p class="label-pink">SOBRE MI</p>
+            <p class="label-about">SOBRE MÍ</p>
             <h2 class="about-title">¡Hola! Mi nombre es Camila</h2>
-            <p class="body-grey">
-                Soy profesora de educación física, Community manager y celíaca desde hace 5 años. Me gusta la música, el deporte, cocinar y grabar contenido. Desde mi diagnóstico, descubrí un mundo gluten free que me llevó a encontrar comidas muy ricas, marcas con productos increíbles y emprendimientos exquisitos.
-            </p>
-            <div class="about-story">
-                <h3 class="about-question">¿Por qué comencé a dedicarme a esto?</h3>
-                <p class="body-grey">
-                    Comencé en redes sociales, buscando compartir mis experiencias en lugares sin gluten, tratando también de dejar un registro de lo que consumía para que mis amigos y familiares puedan ver qué opciones teníamos para salir a comer.
+            <div class="about-body">
+                <p class="about-desc">
+                    Soy profesora de educación física, community manager y celíaca desde hace 5 años. Desde mi diagnóstico, <strong>descubrí un mundo gluten-free que me llevó a encontrar comidas muy ricas, marcas con productos increíbles y emprendimientos exquisitos.</strong>
                 </p>
-                <p class="body-grey">
-                    Luego comencé a compartir productos que probaba, dando mi más sincera opinión. El perfil de <strong>singluten.vivamos</strong> empezó a crecer cada vez más, y muchos emprendedores y marcas confiaban en mí para mostrar y reseñar sus productos.
+                <p class="about-desc">
+                    Empecé a compartir mis experiencias en redes para ayudar a amigos y familiares a encontrar opciones, y poco a poco pasé a reseñar productos con total honestidad.
+                </p>
+                <p class="about-desc about-desc--bold">
+                    Desde 2025, singluten.vivamos no paró de crecer y cada vez más marcas y emprendedores confían en mí para mostrar y reseñar sus productos.
                 </p>
             </div>
-        </div>
-    </section>
-
-    <!-- STATS SECTION -->
-    <section class="stats">
-        <div class="stat-item">
-            <span class="stat-number" data-target="26K">26K</span>
-            <span class="stat-label">FOLLOWERS EN INSTAGRAM</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number" data-target="+700K">+700K</span>
-            <span class="stat-label">VISUALIZACIONES EN INSTAGRAM</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number" data-target="4.2K">4.2K</span>
-            <span class="stat-label">FOLLOWERS EN TIK TOK</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number" data-target="39K">39K</span>
-            <span class="stat-label">LIKES EN TIKTOK</span>
+            <div class="about-social">
+                <div class="about-social-card">
+                    <div class="about-social-header">
+                        <span class="about-social-name">Instagram</span>
+                        <a href="https://www.instagram.com/singluten.vivamos/" class="about-social-link" target="_blank" rel="noopener noreferrer">Ver perfil</a>
+                    </div>
+                    <div class="about-social-stats">
+                        <div class="about-social-stat">
+                            <span class="about-stat-number" data-target="29K">29K</span>
+                            <span class="about-stat-label">FOLLOWERS</span>
+                        </div>
+                        <div class="about-social-stat">
+                            <span class="about-stat-number" data-target="700K">700K</span>
+                            <span class="about-stat-label">VISUALIZACIONES</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-social-card">
+                    <div class="about-social-header">
+                        <span class="about-social-name">Tik Tok</span>
+                        <a href="https://www.tiktok.com/@singluten.vivamos" class="about-social-link" target="_blank" rel="noopener noreferrer">Ver perfil</a>
+                    </div>
+                    <div class="about-social-stats">
+                        <div class="about-social-stat">
+                            <span class="about-stat-number" data-target="6K">6K</span>
+                            <span class="about-stat-label">FOLLOWERS</span>
+                        </div>
+                        <div class="about-social-stat">
+                            <span class="about-stat-number" data-target="44K">44K</span>
+                            <span class="about-stat-label">LIKES</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -386,6 +399,14 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // Sticky navbar state
+        const navbar = document.querySelector('.navbar');
+        function updateNavbar() {
+            navbar.classList.toggle('navbar--scrolled', window.scrollY > 40);
+        }
+        window.addEventListener('scroll', updateNavbar, { passive: true });
+        updateNavbar();
+
         // Scroll reveal — steps one by one
         const stepObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -398,40 +419,37 @@
 
         document.querySelectorAll('.step').forEach(el => stepObserver.observe(el));
 
-        // Count-up animation for stats
+    </script>
+
+    <script>
         function countUp(el) {
             const raw = el.dataset.target;
-            const isPlus = raw.startsWith('+');
             const numStr = raw.replace(/[^0-9.]/g, '');
-            const isDecimal = numStr.includes('.');
-            const suffix = raw.replace(/[^KM%]/g, '');
+            const suffix = raw.replace(/[0-9.]/g, '');
             const target = parseFloat(numStr);
-            const duration = 1600;
+            const duration = 1400;
             const start = performance.now();
-
             function update(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
+                const progress = Math.min((now - start) / duration, 1);
                 const eased = 1 - Math.pow(1 - progress, 3);
-                const current = eased * target;
-                const displayed = isDecimal ? current.toFixed(1) : Math.floor(current).toString();
-                el.textContent = (isPlus ? '+' : '') + displayed + suffix;
+                el.textContent = Math.floor(eased * target) + suffix;
                 if (progress < 1) requestAnimationFrame(update);
+                else el.textContent = raw;
             }
             requestAnimationFrame(update);
         }
 
-        const statsObserver = new IntersectionObserver((entries) => {
+        const socialObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.querySelectorAll('.stat-number[data-target]').forEach(countUp);
-                    statsObserver.unobserve(entry.target);
+                    entry.target.querySelectorAll('.about-stat-number[data-target]').forEach(countUp);
+                    socialObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.4 });
 
-        const statsSection = document.querySelector('.stats');
-        if (statsSection) statsObserver.observe(statsSection);
+        const aboutSocial = document.querySelector('.about-social');
+        if (aboutSocial) socialObserver.observe(aboutSocial);
     </script>
 
     <script>

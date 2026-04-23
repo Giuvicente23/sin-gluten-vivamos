@@ -437,47 +437,57 @@ button {
 }
 
 /* =============================================
-   CLIENTS SECTION
+   COLABS SECTION
    ============================================= */
-.clients {
-    background-color: var(--white);
-    padding: 40px;
+.colabs {
+    background-color: #00292D;
+    padding: 28px 40px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 48px;
+    overflow: hidden;
 }
 
-.clients-label {
+.colabs-label {
+    font-family: var(--font-albert);
     font-size: 14px;
     font-weight: 500;
-    line-height: 16px;
-    color: var(--grey);
-    text-align: center;
+    line-height: 18px;
+    color: var(--white);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.clients-logos {
+/* Desktop marquee */
+.colabs-marquee {
+    flex: 1;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.colabs-track {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 32px;
-    flex-wrap: wrap;
+    gap: 48px;
+    width: max-content;
+    animation: colabs-scroll 28s linear infinite;
 }
 
-.clients-logos img {
+.colabs-track img {
+    height: 24px;
+    width: auto;
     object-fit: contain;
     flex-shrink: 0;
-    max-height: 32px;
-    width: auto;
 }
 
-.clients-logos img.logo-lg {
-    max-height: 56px;
+@keyframes colabs-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
 
-.clients-logos img.logo-sm {
-    max-height: 22px;
+/* Mobile grid */
+.colabs-grid {
+    display: none;
 }
 
 /* =============================================
@@ -652,11 +662,11 @@ button {
    ============================================= */
 .services {
     background-color: #00292D;
-    padding: 80px 40px;
+    padding: 60px 40px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 36px;
     overflow: hidden;
 }
 
@@ -699,7 +709,7 @@ button {
     cursor: pointer;
     background-color: #022225;
     transition: background-color 0.45s ease;
-    height: 400px;
+    height: 340px;
 }
 
 .service-card.active {
@@ -1343,25 +1353,35 @@ button {
         height: 40px;
     }
 
-    /* Clients */
-    .clients {
-        padding: 36px 16px;
+    /* Colabs */
+    .colabs {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+        gap: 32px;
     }
 
-    .clients-logos {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        justify-items: center;
-        gap: 24px;
+    .colabs-label {
+        font-size: 16px;
+        text-align: center;
     }
 
-    .clients-logos img {
-        max-height: 44px;
+    .colabs-marquee {
+        display: none;
+    }
+
+    .colabs-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px 32px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .colabs-grid img {
+        height: 24px;
         width: auto;
-    }
-
-    .clients-logos img.logo-sm {
-        max-height: 24px;
+        object-fit: contain;
     }
 
     /* About */

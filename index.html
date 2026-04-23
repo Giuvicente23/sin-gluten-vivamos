@@ -117,7 +117,7 @@
                     </div>
                     <div class="about-social-stats">
                         <div class="about-social-stat">
-                            <span class="about-stat-number" data-target="29K">29K</span>
+                            <span class="about-stat-number" data-target="30K">30K</span>
                             <span class="about-stat-label">FOLLOWERS</span>
                         </div>
                         <div class="about-social-stat">
@@ -133,11 +133,11 @@
                     </div>
                     <div class="about-social-stats">
                         <div class="about-social-stat">
-                            <span class="about-stat-number" data-target="6K">6K</span>
+                            <span class="about-stat-number" data-target="6.7K">6.7K</span>
                             <span class="about-stat-label">FOLLOWERS</span>
                         </div>
                         <div class="about-social-stat">
-                            <span class="about-stat-number" data-target="44K">44K</span>
+                            <span class="about-stat-number" data-target="46K">46K</span>
                             <span class="about-stat-label">LIKES</span>
                         </div>
                     </div>
@@ -148,31 +148,88 @@
 
     <!-- SERVICES SECTION -->
     <section class="services" id="servicios">
-        <div class="services-intro reveal">
-            <img class="section-deco" src="icons/star.svg" width="34" height="30" alt="">
+        <div class="services-header reveal">
             <h2 class="services-title">Servicios</h2>
             <p class="services-desc">Transformo productos en historias que la gente quiere ver, compartir y comprar.</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <img src="icons/icon-video.svg" width="36" height="36" alt="">
-                <h3 class="service-card-title">Videos UCG para redes</h3>
-                <p class="service-card-desc">Contenido auténtico para conectar con tu audiencia en cada scroll.</p>
+
+        <!-- Desktop cards -->
+        <div class="services-cards">
+            <div class="service-card active" data-svc="0">
+                <div class="service-card-icon-wrap">
+                    <img src="icons/icon-video.png" width="60" height="60" alt="">
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Videos UGC</h3>
+                    <p class="service-card-desc">Creo videos UGC en colaboración con marcas para mostrar sus productos de forma auténtica y generar mayor visibilidad en redes.</p>
+                </div>
             </div>
-            <div class="service-card reveal">
-                <img src="icons/icon-paquete.svg" width="48" height="48" alt="">
-                <h3 class="service-card-title">Paquetes de contenido</h3>
-                <p class="service-card-desc">Contenido para tus redes con foco en maximizar el alcance de tu marca.</p>
+            <div class="service-card" data-svc="1">
+                <div class="service-card-icon-wrap">
+                    <img src="icons/icon-paquete.svg" width="48" height="48" alt="">
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Paquetes de contenido</h3>
+                    <p class="service-card-desc">Contenido para tus redes con foco en maximizar el alcance de tu marca.</p>
+                </div>
             </div>
-            <div class="service-card reveal">
-                <img src="icons/icon-reseña.svg" width="48" height="48" alt="">
-                <h3 class="service-card-title">Reseñas y unboxing</h3>
-                <p class="service-card-desc">Opiniones honestas que generan confianza y acercan tu producto a la decisión de compra.</p>
+            <div class="service-card" data-svc="2">
+                <div class="service-card-icon-wrap">
+                    <img src="icons/icon-reseña.svg" width="48" height="48" alt="">
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Reseñas y unboxing</h3>
+                    <p class="service-card-desc">Opiniones honestas que generan confianza y acercan tu producto a la decisión de compra.</p>
+                </div>
             </div>
-            <div class="service-card reveal">
-                <img src="icons/icon-receta.svg" width="48" height="48" alt="">
-                <h3 class="service-card-title">Recetas con el producto</h3>
-                <p class="service-card-desc">Inspiración creativa que muestra tu producto en acción dentro de la vida cotidiana.</p>
+            <div class="service-card" data-svc="3">
+                <div class="service-card-icon-wrap">
+                    <img src="icons/icon-receta.svg" width="48" height="48" alt="">
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Recetas con tu producto</h3>
+                    <p class="service-card-desc">Inspiración creativa que muestra tu producto en acción dentro de la vida cotidiana.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile accordion -->
+        <div class="services-accordion">
+            <div class="accordion-item open">
+                <button class="accordion-btn">
+                    <span class="accordion-label">Videos UGC</span>
+                    <img class="accordion-icon" src="icons/close_icon.svg" width="24" height="24" alt="">
+                </button>
+                <div class="accordion-body">
+                    <p>Creo videos UGC en colaboración con marcas para mostrar sus productos de forma auténtica y generar mayor visibilidad en redes.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    <span class="accordion-label">Paquetes de contenido</span>
+                    <img class="accordion-icon" src="icons/expand_icon.svg" width="24" height="24" alt="">
+                </button>
+                <div class="accordion-body">
+                    <p>Contenido para tus redes con foco en maximizar el alcance de tu marca.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    <span class="accordion-label">Reseñas y unboxing</span>
+                    <img class="accordion-icon" src="icons/expand_icon.svg" width="24" height="24" alt="">
+                </button>
+                <div class="accordion-body">
+                    <p>Opiniones honestas que generan confianza y acercan tu producto a la decisión de compra.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    <span class="accordion-label">Recetas con tu producto</span>
+                    <img class="accordion-icon" src="icons/expand_icon.svg" width="24" height="24" alt="">
+                </button>
+                <div class="accordion-body">
+                    <p>Inspiración creativa que muestra tu producto en acción dentro de la vida cotidiana.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -398,6 +455,55 @@
         }, { threshold: 0.08 });
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Services desktop — auto-rotation + hover
+        const serviceCards = document.querySelectorAll('.service-card');
+        let activeServiceIndex = 0;
+        let serviceTimer = null;
+
+        function setActiveService(index) {
+            serviceCards.forEach((card, i) => card.classList.toggle('active', i === index));
+            activeServiceIndex = index;
+        }
+
+        function startServiceRotation() {
+            serviceTimer = setInterval(() => {
+                setActiveService((activeServiceIndex + 1) % serviceCards.length);
+            }, 5000);
+        }
+
+        function stopServiceRotation() {
+            clearInterval(serviceTimer);
+            serviceTimer = null;
+        }
+
+        serviceCards.forEach((card, i) => {
+            card.addEventListener('mouseenter', () => {
+                stopServiceRotation();
+                setActiveService(i);
+            });
+            card.addEventListener('mouseleave', () => {
+                startServiceRotation();
+            });
+        });
+
+        startServiceRotation();
+
+        // Services mobile — accordion
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.accordion-item');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.accordion-item').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.accordion-icon').src = 'icons/expand_icon.svg';
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    item.querySelector('.accordion-icon').src = 'icons/close_icon.svg';
+                }
+            });
+        });
 
         // Sticky navbar state
         const navbar = document.querySelector('.navbar');

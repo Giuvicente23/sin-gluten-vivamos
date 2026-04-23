@@ -503,8 +503,9 @@ button {
 }
 
 .about-photo-wrapper {
-    flex: 0 0 auto;
-    width: 592px;
+    flex: 0 0 48%;
+    max-width: 592px;
+    min-width: 0;
 }
 
 .about-photo {
@@ -662,7 +663,7 @@ button {
    ============================================= */
 .services {
     background-color: #00292D;
-    padding: 60px 40px 24px;
+    padding: 80px 40px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -846,9 +847,9 @@ button {
 }
 
 .steps-intro {
-    flex: 0 0 auto;
+    flex: 0 0 42%;
     max-width: 600px;
-    width: 600px;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -1253,6 +1254,16 @@ button {
     .hero-card-02 { width: 220px; left: calc(50% - 630px); top: 275px; }
     .hero-card-03 { width: 210px; right: calc(50% - 620px); top: 250px; }
     .hero-card-04 { width: 215px; right: calc(50% - 625px); top: 30px; }
+
+    .about {
+        padding: 80px 32px;
+        gap: 40px;
+    }
+
+    .steps {
+        padding: 48px 32px;
+        gap: 40px;
+    }
 }
 
 /* =============================================
@@ -1556,5 +1567,50 @@ button {
         flex-direction: column;
         gap: 4px;
         align-items: flex-start;
+    }
+}
+
+/* =============================================
+   SCROLL SNAP — DESKTOP ONLY
+   ============================================= */
+@media (min-width: 769px) {
+    html {
+        scroll-snap-type: y mandatory;
+    }
+
+    .hero,
+    .about,
+    .fold-svc-colabs,
+    .steps,
+    .cases,
+    .fold-cta-footer {
+        scroll-snap-align: start;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Wrapper que contiene services + colabs */
+    .fold-svc-colabs {
+        background-color: #00292D;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Services ocupa el espacio disponible, colabs queda abajo */
+    .fold-svc-colabs .services {
+        flex: 1;
+        height: auto;
+        min-height: 0;
+    }
+
+    .fold-svc-colabs .colabs {
+        flex-shrink: 0;
+    }
+
+    /* CTA + Footer fold */
+    .fold-cta-footer {
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
     }
 }

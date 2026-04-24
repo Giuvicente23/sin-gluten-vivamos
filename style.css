@@ -311,7 +311,7 @@ button {
     display: flex;
     align-items: stretch;
     position: relative;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 /* ── Left column ── */
@@ -411,7 +411,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
     background-image: url('images/hero_background_color.png');
     background-size: cover;
     background-position: center;
@@ -446,11 +446,12 @@ button {
 
 .hero-asset-pills {
     position: absolute;
-    width: 596px;
-    height: 544px;
-    top: 0;
+    width: 571px;
+    height: 340px;
+    max-width: none;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 2;
     pointer-events: none;
 }
@@ -1380,8 +1381,8 @@ button {
     }
 
     .hero-asset-pills {
-        width: 348px;
-        height: 208px;
+        width: 322px;
+        height: 270px;
     }
 
     /* Colabs */

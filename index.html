@@ -111,7 +111,7 @@
                     </div>
                     <div class="about-social-stats">
                         <div class="about-social-stat">
-                            <span class="about-stat-number" data-target="30K">30K</span>
+                            <span class="about-stat-number" data-target="32K">32K</span>
                             <span class="about-stat-label">FOLLOWERS</span>
                         </div>
                         <div class="about-social-stat">
@@ -127,7 +127,7 @@
                     </div>
                     <div class="about-social-stats">
                         <div class="about-social-stat">
-                            <span class="about-stat-number" data-target="7K">7K</span>
+                            <span class="about-stat-number" data-target="7.3K">7.3K</span>
                             <span class="about-stat-label">FOLLOWERS</span>
                         </div>
                         <div class="about-social-stat">
@@ -361,7 +361,10 @@
                         </div>
                         <img src="" alt="" class="cases-brand-logo">
                     </div>
-                    <div class="cases-media"></div>
+                    <div class="cases-media">
+                        <iframe id="casesIframe" src="" frameborder="0" scrolling="no"></iframe>
+                        <a id="casesMediaLink" class="cases-media-link" href="#" target="_blank" rel="noopener noreferrer"></a>
+                    </div>
                     <hr class="cases-divider">
                     <div class="cases-metrics">
                         <div class="cases-metric">
@@ -372,9 +375,13 @@
                             <span class="cases-metric-label">Interacciones</span>
                             <span class="cases-metric-value"></span>
                         </div>
-                        <div class="cases-metric">
-                            <span class="cases-metric-label">Cuentas alcanzadas</span>
-                            <span class="cases-metric-value"></span>
+                        <div class="cases-metric cases-resultado" id="casesResultado" style="display:none;">
+                            <span class="cases-metric-label">Resultado</span>
+                            <span class="cases-resultado-text" id="casesResultadoText"></span>
+                        </div>
+                        <div class="cases-metric" id="casesCompartido" style="display:none;">
+                            <span class="cases-metric-label">Compartido</span>
+                            <span class="cases-metric-value" id="casesCompartidoValue"></span>
                         </div>
                     </div>
                 </div>
@@ -570,11 +577,11 @@
     <script>
         (function () {
             const carouselData = [
-                { name: 'Starbucks',        reel: 'https://www.instagram.com/p/DTtMQzRkXIP/',    logo: 'images/cases/logo-starbucks.svg',       vistas: '169.3K', interacciones: '8.9K', cuentas: '132K' },
-                { name: 'IKRAM Food',       reel: 'https://www.instagram.com/reels/DOuF3Y-iURV/', logo: 'images/cases/logo-ikramfood.svg',       vistas: '56K',    interacciones: '3.6K', cuentas: '40K'  },
-                { name: 'Sur Alimenticio',  reel: null,                                             logo: 'images/cases/logo-sinalimenticio.svg',  vistas: '—',      interacciones: '—',    cuentas: '—'    },
-                { name: 'Rentennials',      reel: null,                                             logo: 'images/cases/logo-rentennials.svg',     vistas: '—',      interacciones: '—',    cuentas: '—'    },
-                { name: 'Rappi',            reel: null,                                             logo: 'images/cases/logo-rappi.svg',           vistas: '—',      interacciones: '—',    cuentas: '—'    }
+                { name: 'La cocina de Don Pablo', reel: 'https://www.instagram.com/p/DWmjJXiCZem/',      embed: 'https://www.instagram.com/p/DWmjJXiCZem/embed/',      logo: 'icons/brands-success/logo_sucess01.svg', vistas: '38K',  interacciones: '3K',  cuentas: '—', compartido: '1.2K' },
+                { name: 'Sur Alimenticio',        reel: 'https://www.instagram.com/p/DXVM3JjCdED/',      embed: 'https://www.instagram.com/p/DXVM3JjCdED/embed/',      logo: 'icons/brands-success/logo_sucess02.svg', vistas: '378K', interacciones: '27K', cuentas: '—', resultado: 'Cliente aumentó 10K seguidores' },
+                { name: 'Starbucks',              reel: 'https://www.instagram.com/reels/DTtMQzRkXIP/', embed: 'https://www.instagram.com/p/DTtMQzRkXIP/embed/',      logo: 'icons/brands-success/logo_sucess03.svg', vistas: '170K', interacciones: '9K',  cuentas: '132K', compartido: '2.3K' },
+                { name: 'Vichenzo',               reel: 'https://www.instagram.com/p/DV7CbTPiTuf/',      embed: 'https://www.instagram.com/p/DV7CbTPiTuf/embed/',      logo: 'icons/brands-success/logo_sucess04.svg', vistas: '13K',  interacciones: '600', cuentas: '—', compartido: '120' },
+                { name: 'Megasaludable',          reel: 'https://www.instagram.com/p/DVFC8ZbkVFw/',      embed: 'https://www.instagram.com/p/DVFC8ZbkVFw/embed/',      logo: 'icons/brands-success/logo_sucess05.svg', vistas: '214K', interacciones: '13K', cuentas: '—', compartido: '1.5K' }
             ];
 
             const TOTAL = carouselData.length;
@@ -600,12 +607,30 @@
                 const logo = card.querySelector('.cases-brand-logo');
                 logo.src = brand.logo;
                 logo.alt = brand.name;
-                logo.classList.toggle('cases-brand-logo--sm',  brand.name === 'Rappi');
-                logo.classList.toggle('cases-brand-logo--xsm', brand.name === 'Rentennials');
+                logo.classList.remove('cases-brand-logo--sm', 'cases-brand-logo--xsm');
+                const iframe = document.getElementById('casesIframe');
+                if (iframe) iframe.src = brand.embed || '';
+                const mediaLink = document.getElementById('casesMediaLink');
+                if (mediaLink) mediaLink.href = brand.reel || '#';
                 const vals = card.querySelectorAll('.cases-metric-value');
                 vals[0].textContent = brand.vistas;
                 vals[1].textContent = brand.interacciones;
-                vals[2].textContent = brand.cuentas;
+                const resultadoEl = document.getElementById('casesResultado');
+                const resultadoText = document.getElementById('casesResultadoText');
+                const compartidoEl = document.getElementById('casesCompartido');
+                const compartidoValue = document.getElementById('casesCompartidoValue');
+                if (brand.resultado) {
+                    resultadoText.textContent = brand.resultado;
+                    resultadoEl.style.display = 'flex';
+                    compartidoEl.style.display = 'none';
+                } else if (brand.compartido) {
+                    compartidoValue.textContent = brand.compartido;
+                    compartidoEl.style.display = 'flex';
+                    resultadoEl.style.display = 'none';
+                } else {
+                    resultadoEl.style.display = 'none';
+                    compartidoEl.style.display = 'none';
+                }
             }
 
             function setDots() {

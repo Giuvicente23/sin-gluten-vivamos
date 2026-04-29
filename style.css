@@ -999,6 +999,7 @@ button {
     justify-content: center;
     align-items: center;
     height: 463px;
+    overflow: hidden;
 }
 
 /* Logo cards de fondo */
@@ -1041,7 +1042,7 @@ button {
 .cases-card {
     width: 342px;
     height: 463px;
-    transition: none;
+    transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
     background: #fffdf6;
     border: 2px solid #f4f4f4;
     border-radius: 24px;
@@ -1052,6 +1053,7 @@ button {
     position: relative;
     z-index: 2;
     flex-shrink: 0;
+    will-change: transform;
 }
 
 .cases-card-inner {
@@ -1667,6 +1669,9 @@ button {
 
     .cases-stage {
         height: auto;
+        touch-action: none;
+        overflow: hidden;
+        position: relative;
     }
 
     .cases-logo-card {
@@ -1678,9 +1683,71 @@ button {
         height: auto;
     }
 
-    .cases-media {
-        height: 320px;
+    /* Ghost cards for peek effect — only visible during drag */
+    .cases-ghost-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
+        will-change: transform;
+        /* match main card */
+        background: #fffdf6;
+        border: 2px solid #f4f4f4;
+        border-radius: 24px;
+        box-shadow: 0px 50px 70px 0px rgba(0, 0, 0, 0.12);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    .cases-ghost-card .cases-card-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex: 1;
+        min-height: 0;
+    }
+
+    .cases-ghost-card .cases-media {
+        background: #111;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 280px;
         flex: none;
+    }
+
+    /* On mobile: hide iframe, show placeholder */
+    .cases-media iframe {
+        display: none;
+    }
+
+    .cases-media-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 280px;
+        flex: none;
+        background: #111;
+        border-radius: 8px;
+    }
+
+    .cases-media-placeholder svg {
+        opacity: 0.35;
+    }
+
+    .cases-media {
+        height: 280px;
+        flex: none;
+        background: #111;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .cases-dots {

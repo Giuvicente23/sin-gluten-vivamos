@@ -363,6 +363,9 @@
                     </div>
                     <div class="cases-media">
                         <iframe id="casesIframe" src="" frameborder="0" scrolling="no"></iframe>
+                        <div class="cases-media-placeholder" aria-hidden="true">
+                            <svg width="56" height="56" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                         <a id="casesMediaLink" class="cases-media-link" href="#" target="_blank" rel="noopener noreferrer"></a>
                     </div>
                     <hr class="cases-divider">
@@ -653,31 +656,33 @@
                 if (newIdx === activeIdx || busy) return;
                 busy = true;
 
-                const inner = document.getElementById('caseFocusInner');
-                const FADE = 200;
+                const card = document.getElementById('caseFocusCard');
+                const EXIT_MS  = 220;
+                const ENTER_MS = 240;
+                const EASING   = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                const exitTo    = dir === 'right' ? '-110%' : '110%';
+                const enterFrom = dir === 'right' ? '110%'  : '-110%';
 
-                // Solo el contenido hace fade — la card (borde, sombra) siempre visible
-                inner.style.willChange = 'opacity';
-                inner.style.transition = `opacity ${FADE}ms ease`;
-                inner.style.opacity = '0';
+                card.style.transition = `transform ${EXIT_MS}ms ${EASING}`;
+                card.style.transform  = `translateX(${exitTo})`;
 
                 setTimeout(() => {
                     activeIdx = newIdx;
-                    setFocusCard(brandAt(0));
-                    setLogoCard('caseFL', brandAt(-2));
-                    setLogoCard('caseNL', brandAt(-1));
-                    setLogoCard('caseNR', brandAt(1));
-                    setLogoCard('caseFR', brandAt(2));
-                    setDots();
+                    render();
 
-                    inner.style.opacity = '';
+                    card.style.transition = 'none';
+                    card.style.transform  = `translateX(${enterFrom})`;
+
+                    card.offsetWidth;
+                    card.style.transition = `transform ${ENTER_MS}ms ${EASING}`;
+                    card.style.transform  = 'translateX(0)';
 
                     setTimeout(() => {
-                        inner.style.transition = '';
-                        inner.style.willChange = '';
+                        card.style.transition = '';
+                        card.style.transform  = '';
                         busy = false;
-                    }, FADE);
-                }, FADE);
+                    }, ENTER_MS);
+                }, EXIT_MS);
             }
 
             document.addEventListener('DOMContentLoaded', function () {
@@ -698,13 +703,183 @@
                     if (e.key === 'ArrowLeft')  navigate(activeIdx - 1, 'left');
                 });
 
-                // Swipe (mobile)
+                // Swipe (mobile) — con peek effect y sin scroll vertical contaminado
                 const stage = document.getElementById('casesStage');
-                let tx = 0;
-                stage.addEventListener('touchstart', (e) => { tx = e.changedTouches[0].clientX; }, { passive: true });
-                stage.addEventListener('touchend', (e) => {
-                    const diff = tx - e.changedTouches[0].clientX;
-                    if (Math.abs(diff) > 48) navigate(diff > 0 ? activeIdx + 1 : activeIdx - 1, diff > 0 ? 'right' : 'left');
+                const card  = document.getElementById('caseFocusCard');
+
+                // Ghost cards para el efecto peek (prev y next)
+                function makeGhost(cls) {
+                    const g = document.createElement('div');
+                    g.className = 'cases-card cases-ghost-card ' + cls;
+                    g.setAttribute('aria-hidden', 'true');
+                    g.innerHTML = `
+                        <div class="cases-card-inner">
+                            <div class="cases-card-header">
+                                <div class="cases-card-brand-info">
+                                    <span class="cases-brand-name"></span>
+                                </div>
+                                <img src="" alt="" class="cases-brand-logo">
+                            </div>
+                            <div class="cases-media" style="height:280px;flex:none;">
+                                <svg width="56" height="56" viewBox="0 0 24 24" fill="white" style="opacity:0.3"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                            <hr class="cases-divider">
+                            <div class="cases-metrics">
+                                <div class="cases-metric">
+                                    <span class="cases-metric-label">Vistas</span>
+                                    <span class="cases-metric-value ghost-vistas"></span>
+                                </div>
+                                <div class="cases-metric">
+                                    <span class="cases-metric-label">Interacciones</span>
+                                    <span class="cases-metric-value ghost-interacciones"></span>
+                                </div>
+                            </div>
+                        </div>`;
+                    return g;
+                }
+
+                const ghostPrev = makeGhost('ghost-prev');
+                const ghostNext = makeGhost('ghost-next');
+                stage.appendChild(ghostPrev);
+                stage.appendChild(ghostNext);
+
+                function resetGhosts() {
+                    [ghostPrev, ghostNext].forEach(g => {
+                        g.style.cssText = 'opacity:0;pointer-events:none;transition:none;';
+                    });
+                    ghostPrev.style.transform = 'translateX(-100%)';
+                    ghostNext.style.transform = 'translateX(100%)';
+                }
+                resetGhosts();
+
+                function populateGhost(ghost, brand) {
+                    ghost.querySelector('.cases-brand-name').textContent = brand.name;
+                    const logo = ghost.querySelector('.cases-brand-logo');
+                    logo.src = brand.logo;
+                    logo.alt = brand.name;
+                    ghost.querySelector('.ghost-vistas').textContent = brand.vistas;
+                    ghost.querySelector('.ghost-interacciones').textContent = brand.interacciones;
+                }
+
+                let touchStartX = 0, touchStartY = 0, touchLastY = 0;
+                let touchDeltaX = 0, touchStartTime = 0;
+                let swipeDir = null;
+                let swiping  = false;
+
+                stage.addEventListener('touchstart', (e) => {
+                    if (busy) return;
+                    touchStartX    = e.touches[0].clientX;
+                    touchStartY    = e.touches[0].clientY;
+                    touchLastY     = touchStartY;
+                    touchStartTime = Date.now();
+                    touchDeltaX    = 0;
+                    swipeDir       = null;
+                    swiping        = true;
+                    card.style.transition = 'none';
+                    populateGhost(ghostPrev, brandAt(-1));
+                    populateGhost(ghostNext, brandAt(1));
+                    ghostPrev.style.opacity = '1';
+                    ghostNext.style.opacity = '1';
+                    ghostPrev.style.transition = 'none';
+                    ghostNext.style.transition = 'none';
+                }, { passive: true });
+
+                stage.addEventListener('touchmove', (e) => {
+                    if (!swiping || busy) return;
+                    const dx     = e.touches[0].clientX - touchStartX;
+                    const dy     = e.touches[0].clientY - touchStartY;
+                    const dyStep = e.touches[0].clientY - touchLastY;
+                    touchLastY   = e.touches[0].clientY;
+
+                    if (swipeDir === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+                        swipeDir = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+                        if (swipeDir === 'v') {
+                            ghostPrev.style.opacity = '0';
+                            ghostNext.style.opacity = '0';
+                        }
+                    }
+
+                    if (swipeDir === 'h') {
+                        e.preventDefault();
+                        touchDeltaX = dx;
+                        card.style.transform      = `translateX(${dx}px)`;
+                        ghostPrev.style.transform = `translateX(calc(-100% + ${dx}px))`;
+                        ghostNext.style.transform = `translateX(calc(100% + ${dx}px))`;
+                    } else if (swipeDir === 'v') {
+                        // touch-action:none requiere scroll manual
+                        window.scrollBy(0, -dyStep);
+                    }
+                }, { passive: false });
+
+                stage.addEventListener('touchend', () => {
+                    if (!swiping) return;
+                    swiping = false;
+
+                    if (swipeDir !== 'h') {
+                        resetGhosts();
+                        card.style.transition = '';
+                        card.style.transform  = '';
+                        swipeDir = null;
+                        return;
+                    }
+
+                    const elapsed  = Date.now() - touchStartTime;
+                    const velocity = Math.abs(touchDeltaX) / elapsed;
+                    const isFast   = velocity > 0.3;
+                    const isFar    = Math.abs(touchDeltaX) > stage.offsetWidth * 0.25;
+
+                    if ((isFast || isFar) && touchDeltaX !== 0) {
+                        const dir    = touchDeltaX < 0 ? 'right' : 'left';
+                        const newIdx = mod(activeIdx + (dir === 'right' ? 1 : -1), TOTAL);
+                        const ghost  = dir === 'right' ? ghostNext : ghostPrev;
+                        const exitX  = dir === 'right' ? '-100%' : '100%';
+                        const SNAP   = 260;
+                        const EASE   = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+                        busy = true;
+
+                        // Card sale, ghost llega al centro
+                        card.style.transition  = `transform ${SNAP}ms ${EASE}`;
+                        card.style.transform   = `translateX(${exitX})`;
+                        ghost.style.transition = `transform ${SNAP}ms ${EASE}`;
+                        ghost.style.transform  = 'translateX(0)';
+
+                        setTimeout(() => {
+                            // Actualizar card real con el nuevo contenido
+                            activeIdx = newIdx;
+                            render();
+
+                            // Snap invisible detrás del ghost
+                            card.style.transition = 'none';
+                            card.style.transform  = '';
+
+                            // Ghost se desvanece revelando la card real
+                            ghost.style.transition = 'opacity 100ms';
+                            ghost.style.opacity    = '0';
+
+                            setTimeout(() => {
+                                resetGhosts();
+                                busy = false;
+                            }, 120);
+                        }, SNAP);
+
+                    } else {
+                        // Snap de vuelta
+                        const EASE = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        card.style.transition      = `transform 280ms ${EASE}`;
+                        card.style.transform       = 'translateX(0)';
+                        ghostPrev.style.transition = `transform 280ms ${EASE}`;
+                        ghostPrev.style.transform  = 'translateX(-100%)';
+                        ghostNext.style.transition = `transform 280ms ${EASE}`;
+                        ghostNext.style.transform  = 'translateX(100%)';
+                        setTimeout(() => {
+                            card.style.transition = '';
+                            card.style.transform  = '';
+                            resetGhosts();
+                        }, 300);
+                    }
+
+                    swipeDir = null;
                 }, { passive: true });
             });
         }());

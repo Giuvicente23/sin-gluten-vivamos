@@ -749,7 +749,7 @@
 
                 function resetGhosts() {
                     [ghostPrev, ghostNext].forEach(g => {
-                        g.style.cssText = 'opacity:0;pointer-events:none;transition:none;';
+                        g.style.cssText = 'position:absolute;top:0;left:0;width:100%;opacity:0;pointer-events:none;transition:none;';
                     });
                     ghostPrev.style.transform = 'translateX(-100%)';
                     ghostNext.style.transform = 'translateX(100%)';

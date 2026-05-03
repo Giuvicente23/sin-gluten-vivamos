@@ -1940,4 +1940,16 @@ button {
         display: flex;
         flex-direction: column;
     }
+
+    /* Cases: el stage crece para ocupar el espacio disponible,
+       la card se estira para llenar el stage sin desbordarlo */
+    .cases-stage {
+        flex: 1;
+        min-height: 0;
+        height: auto;
+    }
+
+    .cases-card {
+        height: 100%;
+    }
 }

@@ -662,33 +662,23 @@
                 if (newIdx === activeIdx || busy) return;
                 busy = true;
 
-                const card = document.getElementById('caseFocusCard');
-                const EXIT_MS  = 220;
-                const ENTER_MS = 240;
-                const EASING   = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                const exitTo    = dir === 'right' ? '-110%' : '110%';
-                const enterFrom = dir === 'right' ? '110%'  : '-110%';
+                const inner = document.getElementById('caseFocusInner');
+                const FADE_OUT = 140;
+                const FADE_IN  = 180;
 
-                card.style.transition = `transform ${EXIT_MS}ms ${EASING}`;
-                card.style.transform  = `translateX(${exitTo})`;
+                inner.style.transition = `opacity ${FADE_OUT}ms ease`;
+                inner.style.opacity    = '0';
 
                 setTimeout(() => {
                     activeIdx = newIdx;
                     render();
-
-                    card.style.transition = 'none';
-                    card.style.transform  = `translateX(${enterFrom})`;
-
-                    card.offsetWidth;
-                    card.style.transition = `transform ${ENTER_MS}ms ${EASING}`;
-                    card.style.transform  = 'translateX(0)';
-
+                    inner.style.transition = `opacity ${FADE_IN}ms ease`;
+                    inner.style.opacity    = '1';
                     setTimeout(() => {
-                        card.style.transition = '';
-                        card.style.transform  = '';
+                        inner.style.transition = '';
                         busy = false;
-                    }, ENTER_MS);
-                }, EXIT_MS);
+                    }, FADE_IN);
+                }, FADE_OUT);
             }
 
             document.addEventListener('DOMContentLoaded', function () {

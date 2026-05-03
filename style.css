@@ -1206,6 +1206,25 @@ button {
 .cases-card.is-entering-left { transform: translateX(-120%); }
 .cases-card.is-entering-right{ transform: translateX(120%); }
 
+/* Ghost cards: siempre position:absolute para no romper el flex layout en desktop */
+.cases-ghost-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform;
+    background: #fffdf6;
+    border: 2px solid #f4f4f4;
+    border-radius: 24px;
+    box-shadow: 0px 50px 70px 0px rgba(0, 0, 0, 0.12);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
 .cases-dots {
     display: flex;
     gap: 6px;
@@ -1406,19 +1425,98 @@ button {
    RESPONSIVE — TABLET GRANDE (1100px)
    ============================================= */
 @media (max-width: 1100px) {
+    /* Navbar */
+    .navbar {
+        padding: 12px 24px;
+        gap: 32px;
+    }
+
+    .navbar--scrolled {
+        padding: 8px 24px;
+    }
+
+    .navbar-links {
+        gap: 16px;
+        margin-right: 12px;
+    }
+
+    /* Hero */
     .hero-title {
         font-size: 52px;
         line-height: 58px;
     }
 
+    .hero-asset-wrap {
+        width: 340px;
+        height: 444px;
+    }
+
+    .hero-asset-pills {
+        width: 460px;
+        height: 274px;
+    }
+
+    /* About */
     .about {
         padding: 80px 32px;
         gap: 40px;
     }
 
+    .about-social-stats {
+        gap: 20px;
+    }
+
+    /* Steps */
     .steps {
         padding: 48px 32px;
         gap: 40px;
+    }
+}
+
+/* =============================================
+   RESPONSIVE — TABLET ANGOSTO (900px)
+   ============================================= */
+@media (max-width: 900px) {
+    /* About: foto más angosta para dar espacio al texto */
+    .about-photo-wrapper {
+        flex: 0 0 36%;
+    }
+
+    .about-social-card {
+        padding: 16px;
+    }
+
+    .about-social-stats {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .about-stat-number {
+        font-size: 28px;
+        line-height: 32px;
+    }
+
+    /* Servicios: accordion en lugar de cards apretadas */
+    .services-cards {
+        display: none;
+    }
+
+    .services-accordion {
+        display: flex;
+    }
+
+    .services {
+        align-items: flex-start;
+        padding: 40px 24px 24px;
+    }
+
+    .services-header {
+        text-align: left;
+    }
+
+    .services-title {
+        font-size: 36px;
+        line-height: 40px;
     }
 }
 
@@ -1681,26 +1779,6 @@ button {
     .cases-card {
         width: 100%;
         height: auto;
-    }
-
-    /* Ghost cards for peek effect — only visible during drag */
-    .cases-ghost-card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        opacity: 0;
-        pointer-events: none;
-        will-change: transform;
-        /* match main card */
-        background: #fffdf6;
-        border: 2px solid #f4f4f4;
-        border-radius: 24px;
-        box-shadow: 0px 50px 70px 0px rgba(0, 0, 0, 0.12);
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
     }
 
     .cases-ghost-card .cases-card-inner {

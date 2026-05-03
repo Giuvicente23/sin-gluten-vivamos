@@ -960,7 +960,7 @@ button {
    ============================================= */
 .cases {
     background-color: #fffdf6;
-    padding: 80px 36px 120px;
+    padding: 80px 0 120px;
     display: flex;
     flex-direction: column;
     gap: 36px;
@@ -975,6 +975,7 @@ button {
     flex-direction: column;
     gap: 12px;
     width: 100%;
+    padding: 0 36px;
 }
 
 .cases-title {
@@ -999,7 +1000,6 @@ button {
     justify-content: center;
     align-items: center;
     height: 463px;
-    overflow: hidden;
 }
 
 /* Logo cards de fondo */
